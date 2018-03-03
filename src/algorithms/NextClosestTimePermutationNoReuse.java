@@ -1,7 +1,7 @@
 package algorithms;
 import java.util.*;
 
-public class Algorithms {
+public class NextClosestTimePermutationNoReuse {
 	// Next closest time with permutation only. Cannot reuse digits.
 	    public static void main(String[] args) {
 	        System.out.println(next("11:00"));
