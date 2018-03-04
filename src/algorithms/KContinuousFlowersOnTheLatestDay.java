@@ -2,55 +2,25 @@ package algorithms;
 import java.util.*;
 public class KContinuousFlowersOnTheLatestDay {
 	public static void main(String[] args) {
-		int[] flow = {3,1,5,4,2};
-		System.out.println(flower(flow, 0));
+		int[] flow = {5,4,3,2,1};
+		System.out.println(flower(flow, 5));
 	}
 	
 	private static int flower(int[] P, int k) {
-		boolean[] arr = new boolean[P.length];
-		Map<Integer, List<Integer>> map = new HashMap<>();
-		int day = 1, res = -1;
-		// O(n^2)
-		for(int p = 0; p < P.length; p++) {
-			arr[P[p] - 1] = true;
-			// O(n)
-			List<Integer> len = consecutiveOnToday(arr);
-			// O(k)
-			for(int l : len) {
-				map.computeIfAbsent(l, a -> new ArrayList<>()).add(day);
-			}
-			// BFS like : day only increase outter the loop
-			day++;
+		// On the last day must all bloom
+		if(k == P.length) return P.length;
+		TreeSet<Integer> set = new TreeSet<>();
+		// Add "Walls"
+		set.add(0);
+		set.add(P.length + 1);
+		// Flowers bloom -> empty slot in LC 683
+		for(int i = P.length - 1; i >= 0 ; i--) {
+			set.add(P[i]);
+			Integer high = set.higher(P[i]);
+			Integer low = set.lower(P[i]);
+//			System.out.println("pi " + P[i] + " higher " + set.higher(P[i]) + " lower " + set.lower(P[i]) + " res " + (high - P[i] - 1) + " or " + (P[i] - low - 1));
+			if(high != null && (high - P[i] - 1 == k) || low != null && (P[i] - low - 1 == k)) return i;
 		}
-		if(!map.containsKey(k)) return res;
-		else {
-			List<Integer> days = map.get(k);
-			// Get the max in O(m)
-			for(int d : days) {
-				res = Math.max(res, d);
-			}
-		}
-		return res;
-	}
-	/*Calculate all consecutive flower number on this day*/
-	private static List<Integer> consecutiveOnToday(boolean[] arr) {
-		Set<Integer> set = new HashSet<>();
-		List<Integer> len = new ArrayList<>();
-		int cnt = 0;
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] == true) cnt++;
-			else{
-				if(cnt == 0) continue;
-				if(set.contains(cnt)) {
-					cnt = 0;
-					continue;
-				}
-				len.add(cnt);
-				set.add(cnt);
-				cnt = 0;
-			}
-		}
-		if(cnt != 0 && !set.contains(cnt)) len.add(cnt);
-		return len;
+		return -1;
 	}
 }
