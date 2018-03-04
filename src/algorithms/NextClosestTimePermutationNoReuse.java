@@ -4,7 +4,7 @@ import java.util.*;
 public class NextClosestTimePermutationNoReuse {
 	// Next closest time with permutation only. Cannot reuse digits.
 	    public static void main(String[] args) {
-	        System.out.println(next("23:55"));
+	        System.out.println(next("00:11"));
 	    }
 	    
 	    private static String next(String s) {
