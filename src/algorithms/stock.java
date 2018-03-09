@@ -32,7 +32,7 @@ public class stock {
 		System.out.println(Arrays.toString(res1) + " " + Arrays.toString(res2));
 		for(int i = 0; i < numOfStock; i++) {
 			res1[i] = (double) res1[i] / sum1 - (double) res2[i] / sum2;
-			sb1.append(names[i]).append(":").append(res1[i]).append(",");
+//			sb1.append(names[i]).append(":").append(res1[i]).append(",");
 		}
 		return sb1.toString();
 	}
