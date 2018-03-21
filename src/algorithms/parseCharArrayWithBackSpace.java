@@ -6,7 +6,7 @@ package algorithms;
 	[a,b,'\b','\b','\b',d,c] 和 [d,c] true
 	[a,b,d,'\b'] 和 [a,d] false.
  * */
-public class parseCharArrayWithBacjSpace {
+public class parseCharArrayWithBackSpace {
 	// the most native thinking is to use a stack. when meet a \b && sta is not empty(), pop;
 	// Then check if everything in the stack is the same with the target. skip this sol; Time O(n), Space O(n)
 	public static void main(String[] args) {
