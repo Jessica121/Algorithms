@@ -5,8 +5,8 @@ public class numOfPointsInACircle {
  * given an integer r，find how many integer points are located in a circle with radius r 
 */
 	public static void main(String[] args) {
-		System.out.println(safeWay(1224.4));
-		System.out.println(fastWay(1224.4));
+		System.out.println(safeWay(1.0));
+		System.out.println(fastWay(1.0));
 	}
 	
 	private static int safeWay(double radix) {
