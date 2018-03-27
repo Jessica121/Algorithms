@@ -74,15 +74,17 @@ public class voteTopK {
 		while(res.size() > k) res.remove(res.size() - 1);
 		return res;
 	}
-	
+	// 相信自己
 	private static int findTime(List<LogEntry> list, List<String> candi) {
 		if(candi.size() > list.size()) return -1;
 		Map<String, Integer> map = new HashMap<>();
+		// o(nlogn) n -> num of votes
 		Collections.sort(list, (a, b) -> (a.time - b.time));
 		for(int i = 0; i < list.size(); i++) {
 			map.put(list.get(i).candidate, map.getOrDefault(list.get(i).candidate, 0) + 1);
 		}
 		int i = list.size() - 1;
+		// m (list size) * nlogn (n : map.size) = n^2logn
 		while(i >= 0 && !topK(map, candi.size()).equals(candi)) {
 			map.put(list.get(i).candidate, map.get(list.get(i).candidate) - 1);
 			if(map.get(list.get(i).candidate) == 0) map.remove(list.get(i).candidate);
@@ -95,6 +97,7 @@ public class voteTopK {
 	private static List<String> topK(Map<String, Integer> map, int k) {
 		List<String> res = new ArrayList<>();
 		res.addAll(map.keySet());
+		// nlogn -> n : map size
 		Collections.sort(res, (a, b) -> (map.get(b) - map.get(a)));
 		while(res.size() > k) res.remove(res.size() - 1);
 		return res;
