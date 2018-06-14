@@ -2,11 +2,12 @@
 
 ·方法分類：
 
-1. String and Array
+1. String and Array: String: ask captilization, blank space, ASCII or UNICODE
 
 2. LinkedList: Cycle check, null pointer check before accessing its properties like next.
 			   No length know, only access from head, recursion.
-			   recursion's result may be null
+			   recursion's result may be null;
+			   for Double linkedlist, insert requires both the next pointers set and prev pointers set. 4 sets.
 
 3. Stack and Queue
 
