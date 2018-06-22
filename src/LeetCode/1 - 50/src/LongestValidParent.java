@@ -61,4 +61,30 @@ public class LongestValidParent {
         }
         return max;
     }
+    
+    /*
+    The core of this problem is one valid string () must follow immediately by another valid stirng
+    as at different index may have diff max len, and they cannot carry to next indexes if they are divivded by invalid parts. 
+    so track as we go rather than return a begin or end index at the end.
+    
+    we use an dp array to track the longest valid string must starting at that index, rather that hopping over invalid ones.
+    so if i, i + 1 is ( ), then dp[i] = dp[i + 1] + 2;
+    if i, i + 1 is ( ( , then dp[i] = dp[i + 1] + 2 + dp[i + dp[i + 1] + 2]
+    starting from end of string.
+    
+    */
+    public int longestValidParenthesesSmartWay(String s) {
+        int[] dp = new int[s.length() + 1];
+        int max = 0;
+        for(int i = s.length() - 2; i >= 0; i--) {
+            if(s.charAt(i) == '(' && s.charAt(i + 1) == ')') dp[i] = 2 + dp[i + 2];
+            else if(s.charAt(i) == '(' && s.charAt(i + 1) == '(') {
+                if(i + dp[i + 1] + 1 < s.length() && s.charAt(i + dp[i + 1] + 1) == ')')
+                    dp[i] = dp[i + 1] + 2 + dp[i + dp[i + 1] + 2];
+            }
+            if(dp[i] > max) max = dp[i];
+        }
+        System.out.println(Arrays.toString(dp));
+        return max;
+    }
 }
