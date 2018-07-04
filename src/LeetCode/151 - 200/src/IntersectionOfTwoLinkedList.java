@@ -5,6 +5,10 @@ public class IntersectionOfTwoLinkedList {
     then move together untill two nodes same.
     no intersection: 1 - 2 - 3
                      4
+                     
+   	intersection: 3
+   				: 2 - 3
+                     
     */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if(headA == null || headB == null) return null;
