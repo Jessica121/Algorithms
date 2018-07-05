@@ -8,6 +8,7 @@
 			   No length know, only access from head, recursion.
 			   recursion's result may be null;
 			   for Double linkedlist, insert requires both the next pointers set and prev pointers set. 4 sets.
+			   1. node == null 2. n <= 0 3. n > list.length 4. linkedlist有没有circle之类的
 
 3. Stack and Queue
 
