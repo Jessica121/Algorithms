@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Strobogrammatic {
+public class StrobogrammaticIII {
 	 /*
     use the second method generate from start to end, not just the two ends jesus
     and eliminate the borders from the result.
