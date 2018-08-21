@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 
 public class HIndex {
     /*
@@ -15,6 +16,7 @@ public class HIndex {
         Arrays.sort(citations);
         for(int i = 0; i < citations.length; i++) {
         	// citation is at least, not strictly equal to.
+        	// the value should >= to the length - i. since that is how much articles after it. and indicates the number of articles.
             if(citations[i] >= citations.length - i) return citations.length - i;
         }
         return 0;
