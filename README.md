@@ -23,12 +23,3 @@
 
 5. Graph: Cycle, visited
    Matrix: a graph, search path, especially to neighbers or defined directions, mark visited to prevent check back. (stack overflow)
-
-
-
-·錯誤：
-- if else沒有把所有情況考慮完全，比如 h1 = h2 這種
-- recursive 左和右都寫成左……………… （4.8）
-- Wrapper class中 要比較這整個class還是那裡面的node or value
-
-
