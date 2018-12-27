@@ -52,3 +52,67 @@ public class SerializeAndDeserilizeBinarySize {
         }
     }
 }
+
+// 12.27.18
+public class Codec {
+    public final String NULL = "X";
+    // need splitter as i realized the value is int and could be any length
+    public final String SPLT = ",";
+    /*
+    use pre-order traversal.
+    use a string builder, append root.val if not null, then left and right recursion.
+    if null append a null
+    then return sb.to string
+    */
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        serialize(root, sb);
+        return sb.toString();
+    }
+    
+    private void serialize(TreeNode node, StringBuilder sb) {
+        if(node == null) {
+            sb.append(NULL);
+            sb.append(SPLT);
+        }
+        else {
+            sb.append(node.val);
+            sb.append(SPLT);
+            serialize(node.left, sb);
+            serialize(node.right, sb);
+        }
+    }
+
+    /*
+    put all chars in the string to a que, 
+    pull the que, if i character stands for null, return null.
+    else create a new node with the value, and append left and right recursion. 
+    return the node.
+    
+    */
+    public TreeNode deserialize(String data) {
+        Queue<String> que = putDataInQue(data);
+        return deserialize(que);
+    }
+    
+    private Queue<String> putDataInQue(String data) {
+        Queue<String> que = new LinkedList<>();
+        String[] arr = data.split(SPLT);
+        for(String c : arr) {
+            que.offer(c);
+        }
+        return que;
+    }
+    
+    private TreeNode deserialize(Queue<String> que) {
+        // ithe que will never be empty, as we put null nodes as well, and stop at null nodes.
+        String top = que.poll();
+        if(top.equals(NULL)) return null;
+        else {
+            TreeNode node = new TreeNode(Integer.valueOf(top));
+            node.left = deserialize(que);
+            node.right = deserialize(que);
+            return node;               
+        }
+    } 
+}
